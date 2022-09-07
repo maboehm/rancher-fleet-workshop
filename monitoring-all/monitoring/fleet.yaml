@@ -33,72 +33,72 @@ diff:
       kind: MutatingWebhookConfiguration
       name: rancher-monitoring-admission
       operations:
-        - {"op":"remove", "path":"/webhooks"}
+        - { "op": "remove", "path": "/webhooks" }
     - apiVersion: admissionregistration.k8s.io/v1
       kind: ValidatingWebhookConfiguration
       name: rancher-monitoring-admission
       operations:
-        - {"op":"remove", "path":"/webhooks"}
+        - { "op": "remove", "path": "/webhooks" }
 
 targetCustomizations:
-- name: fleet01
-  helm:
-    values:
-      prometheus:
-        ingress:
-          hosts:
-            - prometheus.fleet01.<IPfleet01>.sslip.io
-          tls:
-            - secretName: prometheus-ingress-tls
-              hosts:
-                - prometheus.fleet01.<IPfleet01>.sslip.io
-  clusterName: fleet01
-- name: fleet02
-  helm:
-    values:
-      prometheus:
-        ingress:
-          hosts:
-            - prometheus.fleet02.<IPfleet02>.sslip.io
-          tls:
-            - secretName: prometheus-ingress-tls
-              hosts:
-                - prometheus.fleet02.<IPfleet02>.sslip.io
-  clusterName: fleet02
-- name: fleet03
-  helm:
-    values:
-      prometheus:
-        ingress:
-          hosts:
-            - prometheus.fleet03.<IPfleet03>.sslip.io
-          tls:
-            - secretName: prometheus-ingress-tls
-              hosts:
-                - prometheus.fleet03.<IPfleet03>.sslip.io
-  clusterName: fleet03
-- name: central
-  helm:
-    values:
-      prometheus:
-        ingress:
-          hosts:
-            - prometheus.central.<IPcentral>.sslip.io
-          tls:
-            - secretName: prometheus-ingress-tls
-              hosts:
-                - prometheus.central.<IPcentral>.sslip.io
-      grafana:
-        sidecar:
-          dashboards:
-            multicluster:
-              global:
-                enabled: true
-              etcd:
-                enabled: true
-          datasources:
-            url: http://prometheus-operated.central-monitoring-system:9090/
-  clusterName: central
+  - name: fleet01
+    helm:
+      values:
+        prometheus:
+          ingress:
+            hosts:
+              - prometheus.fleet01.52.210.157.88.sslip.io
+            tls:
+              - secretName: prometheus-ingress-tls
+                hosts:
+                  - prometheus.fleet01.52.210.157.88.sslip.io
+    clusterName: fleet01
+  - name: fleet02
+    helm:
+      values:
+        prometheus:
+          ingress:
+            hosts:
+              - prometheus.fleet02.54.154.52.75.sslip.io
+            tls:
+              - secretName: prometheus-ingress-tls
+                hosts:
+                  - prometheus.fleet02.54.154.52.75.sslip.io
+    clusterName: fleet02
+  - name: fleet03
+    helm:
+      values:
+        prometheus:
+          ingress:
+            hosts:
+              - prometheus.fleet03.34.252.20.195.sslip.io
+            tls:
+              - secretName: prometheus-ingress-tls
+                hosts:
+                  - prometheus.fleet03.34.252.20.195.sslip.io
+    clusterName: fleet03
+  - name: central
+    helm:
+      values:
+        prometheus:
+          ingress:
+            hosts:
+              - prometheus.central.34.241.154.20.sslip.io
+            tls:
+              - secretName: prometheus-ingress-tls
+                hosts:
+                  - prometheus.central.34.241.154.20.sslip.io
+        grafana:
+          sidecar:
+            dashboards:
+              multicluster:
+                global:
+                  enabled: true
+                etcd:
+                  enabled: true
+            datasources:
+              url: http://prometheus-operated.central-monitoring-system:9090/
+    clusterName: central
 #- name: edge-clusters
 #  helm:
 #    values:
